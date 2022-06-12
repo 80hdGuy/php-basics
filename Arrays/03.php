@@ -10,7 +10,7 @@ $needle = (int)readline("Enter the value to search for: ");
 
 //todo check if an array contains a value user entered
 
-echo !in_array($needle, $numbers, true) ? "Exists in array" : "Don't exist in array";
+echo (in_array($needle, $numbers, true) ? "Exists in array" : "Don't exist in array") . PHP_EOL;
 
 
 
