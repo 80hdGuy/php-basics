@@ -67,15 +67,15 @@ const wordList = [
     "platypus",
     "music"
 ];
-//wordList[rand(0,count(wordList) -1)]
-$word = "dog";
-$wordLength = strlen($word);
+$wordChars = str_split(strtolower(wordList[rand(0,count(wordList) -1)]));
+$tempWordChars = $wordChars;
+$hiddenWordChars = array_fill(0,count($wordChars),"_");
 $misses = "";
-$hiddenWord = implode(array_fill(0,$wordLength,'_'));
 
-function displayField(string $misses, string $hiddenWord){
+
+function displayField(string $misses, array $hiddenWord){
     echo "-=-=-=-=-=-=-=-=-=-=-=-=-=-" . PHP_EOL. PHP_EOL;
-    echo "Word:	". implode(" ", str_split($hiddenWord)) . PHP_EOL. PHP_EOL;
+    echo "Word:	". implode(" ", $hiddenWord) . PHP_EOL. PHP_EOL;
     echo "Misses:" . $misses . PHP_EOL. PHP_EOL;
 
 }
@@ -84,33 +84,38 @@ function makeGuess(): string{
     return readline("Guess: ");
 }
 
-function isGuessRight(string $input, string $answer):bool {
-    if (in_array($input,str_split($answer)))
-       return true;
+function isGuessRight(string $input, array $answer):bool {
+    if (in_array(strtolower($input), $answer)) {
+        return true;
+    }
     return false;
 }
 
 function isGuessValid(string $guess): bool {
-    if(strlen($guess) != 1){
+    if(strlen($guess) != 1 || $guess == "_"){
         return false;
     }
     return true;
 }
 
-while(in_array("_", str_split($hiddenWord)) && strlen($misses) < 5){
-    DisplayField($misses, $hiddenWord);
+while(in_array("_", $hiddenWordChars) && strlen($misses) < 5){
+    DisplayField($misses, $hiddenWordChars);
     $guess = MakeGuess();
     if(!isGuessValid($guess)){
         echo "[ERROR] Make valid guess please :) \n";
         continue;
     }
-    $isGuessRight = IsGuessRight($guess, $word);
-    $misses .= $isGuessRight? '': $guess;
-    if ($isGuessRight)
-        $hiddenWord[array_search($guess, str_split($word))] = $guess;
+    if(IsGuessRight($guess, $tempWordChars)){
+        $hiddenWordChars[array_search($guess, $tempWordChars,true)] = $guess;
+        $tempWordChars[array_search($guess, $tempWordChars,true)] = "_";
+
+
+    }else{
+        $misses .= $guess;
+    }
 }
-DisplayField($misses, $hiddenWord);
 
-
-
-
+echo (!in_array("_", $hiddenWordChars) ?
+        "Good job! You guessed it! It's \"".implode($wordChars)."\"" :
+        "Too bad. You ran out of attempts. It's \"".implode($wordChars)."\""
+    ) . PHP_EOL;
