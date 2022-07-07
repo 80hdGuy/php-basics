@@ -36,10 +36,12 @@ class Test
     public function main(Product $product): void
     {
         $this->products[] = $product;
+
     }
 
     public function printOutProducts(): void
     {
+        /** @var Product $product */
         foreach ($this->products as $product) {
             echo $product->printProduct() . PHP_EOL;
         }

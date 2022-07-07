@@ -1,10 +1,13 @@
 <?php
 
 $surveyed = 12467;
-class Surveyed{
+
+class Surveyed
+{
     public static float $purchased_energy_drinks = 0.14;
     public static float $prefer_citrus_drinks = 0.64;
 }
+
 function calculate_energy_drinkers(int $numberSurveyed): float
 {
     return $numberSurveyed * Surveyed::$purchased_energy_drinks;
