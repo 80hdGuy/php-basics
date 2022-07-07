@@ -2,7 +2,7 @@
 
 
 
-class Game{
+class TicTacToeGame{
     private array $winningCombos = [
             [[0, 0],[0, 1],[0, 2]],
             [[1, 0],[1, 1],[1, 2]],
@@ -77,7 +77,7 @@ class Game{
     }
 
 }
-$game = new Game();
+$game = new TicTacToeGame();
 $winner = '';
 
 do {
