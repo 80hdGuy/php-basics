@@ -3,11 +3,12 @@
 $inputText = readline("Give me a number:");
 
 
-function CheckOddEven(int $number){
-    if($number != 0){
-        if(fmod($number,2) == 0){
+function CheckOddEven(int $number)
+{
+    if ($number != 0) {
+        if (fmod($number, 2) == 0) {
             return "Even Number";
-        }else{
+        } else {
             return "Odd Number";
         }
     }

@@ -10,14 +10,14 @@ $upperBound = 100;
 $sum = 0;
 $average = 0;
 $iterationCount = 0;
-for ($i = $lowerBound; $i <= $upperBound; $i++){
+for ($i = $lowerBound; $i <= $upperBound; $i++) {
     $sum += $i;
     $iterationCount++;
 }
 $average = $sum / $iterationCount;
 
-echo "Sum of numbers from " . $lowerBound . " to " . $upperBound . " is " . $sum .PHP_EOL;
-echo "Average of numbers is " . $average .PHP_EOL;
+echo "Sum of numbers from " . $lowerBound . " to " . $upperBound . " is " . $sum . PHP_EOL;
+echo "Average of numbers is " . $average . PHP_EOL;
 
 
 
